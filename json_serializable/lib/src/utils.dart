@@ -180,6 +180,7 @@ String ifNullOrElse(String test, String ifNull, String ifNotNull) =>
 
 extension StringExtension on String {
   String get snakePascal {
+    final _upperCase = RegExp('[A-Z]');
      if (isEmpty) {
       return '';
     }
