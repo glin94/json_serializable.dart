@@ -91,4 +91,5 @@ const _$FieldRenameEnumMap = {
   FieldRename.snake: 'snake',
   FieldRename.pascal: 'pascal',
   FieldRename.screamingSnake: 'screamingSnake',
+  FieldRename.capitalizationSnake: 'capitalizationSnake',
 };

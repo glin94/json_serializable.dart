@@ -178,6 +178,12 @@ extension DartTypeExtension on DartType {
 String ifNullOrElse(String test, String ifNull, String ifNotNull) =>
     '$test == null ? $ifNull : $ifNotNull';
 
+extension StringExtension on String {
+  /// Capitalize the first letter of a string
+  String capitalize() {
+    return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+  }
+
 String encodedFieldName(
   FieldRename fieldRename,
   String declaredName,
@@ -189,6 +195,8 @@ String encodedFieldName(
       return declaredName.snake;
     case FieldRename.screamingSnake:
       return declaredName.snake.toUpperCase();
+    case FieldRename.capitalizationSnake:
+      return declaredName.snake.capitalize();
     case FieldRename.kebab:
       return declaredName.kebab;
     case FieldRename.pascal:
