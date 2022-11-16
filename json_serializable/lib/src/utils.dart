@@ -179,10 +179,22 @@ String ifNullOrElse(String test, String ifNull, String ifNotNull) =>
     '$test == null ? $ifNull : $ifNotNull';
 
 extension StringExtension on String {
-  /// Capitalize the first letter of a string
-  String capitalize() {
-    return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
-  }
+  String get snakePascal {
+     if (isEmpty) {
+      return '';
+    }
+    final fixed=   replaceAllMapped(_upperCase, (match) {
+        var upper = match.group(0)!.toUpperCase();
+
+ 
+        if (match.start > 0) {
+            upper = '_$upper';
+          }
+
+        return upper.toUpperCase();
+      });
+    return fixed[0].toUpperCase() +fixed.substring(1);
+  } 
 }
 
 String encodedFieldName(
@@ -196,8 +208,8 @@ String encodedFieldName(
       return declaredName.snake;
     case FieldRename.screamingSnake:
       return declaredName.snake.toUpperCase();
-    case FieldRename.capitalizationSnake:
-      return declaredName.snake.capitalize();
+    case FieldRename.snakePascal:
+      return declaredName.snakePascal;
     case FieldRename.kebab:
       return declaredName.kebab;
     case FieldRename.pascal:
